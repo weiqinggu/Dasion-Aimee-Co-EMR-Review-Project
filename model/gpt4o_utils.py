@@ -48,15 +48,17 @@ def save_to_txt(report, filename):
     
 # main function
 def main():
-    transcription_path = "transcription.txt"
-    phq9_criteria_path = "phq-9.json"
+    transcription_path = "../transcription-depressed.txt"
+    phq9_criteria_path = "../phq-9.json"
+    
+    file_name = os.path.splitext(os.path.basename(transcription_path))[0]
     
     transcription_text = read_txt_file(transcription_path)
     ph9_criteria = load_phq9_criteria(phq9_criteria_path)
     
     report = generate_report(transcription_text, ph9_criteria)
     
-    output_filename = "phq9_report.txt"
+    output_filename = f"{file_name}_report.txt"
     save_to_txt(report, output_filename)
     print(f"Report saved to {output_filename}")
 
